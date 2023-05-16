@@ -6,6 +6,7 @@ class AlarmScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int whichActionSelected = 1;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -14,13 +15,13 @@ class AlarmScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(child: Icon(Icons.alarm),onTap: (){print("alarm");},),
+                GestureDetector(child: Icon(Icons.alarm, color: Colors.black,),onTap: (){setState(){whichActionSelected = 1;}},),
                 SizedBox(width: 20,),
-                GestureDetector(child: Icon(Icons.watch_later_sharp),onTap: (){print("alarm");},),
+                GestureDetector(child: Icon(Icons.watch_later_sharp, color: (whichActionSelected == 1)?Colors.black:Colors.grey;),onTap: (){setState(){whichActionSelected = 1;}},),
                 SizedBox(width: 20,),
-                GestureDetector(child: Icon(Icons.timer),onTap: (){print("alarm");},),
+                GestureDetector(child: Icon(Icons.timer, color: (whichActionSelected == 1?Colors.black:Colors.grey;)),onTap: (){setState(){whichActionSelected = 3;}},),
                 SizedBox(width: 20,),
-                GestureDetector(child: Icon(Icons.hourglass_empty_sharp),onTap: (){print("alarm");},),
+                GestureDetector(child: Icon(Icons.hourglass_empty_sharp, color: (whichActionSelected == 1?Colors.black:Colors.grey;)),onTap: (){setState(){whichActionSelected = 4;}},),
               ],
             ),
           ),
@@ -36,7 +37,7 @@ class AlarmScreen extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: Colors.black,
+        // backgroundColor: Colors.black,
         body: ListView.builder(
           itemCount: 8,
           itemBuilder: (context, index){

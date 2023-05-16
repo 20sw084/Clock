@@ -13,7 +13,7 @@ class Mypp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.grey,
+          primarySwatch: Colors.blue,
       ),
       home: AlarmScreen(),
     );
