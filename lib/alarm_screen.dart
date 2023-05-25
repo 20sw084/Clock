@@ -27,11 +27,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                         (whichActionSelected == 1) ? Colors.black : Colors.grey,
                   ),
                   onTap: () {
-                    whichActionSelected = 1;
-                    setState() {
-                      whichActionSelected = 1;
-                      print("1");
-                    }
+                    setState(() => whichActionSelected = 1);
                   },
                 ),
                 SizedBox(
@@ -43,10 +39,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                           ? Colors.black
                           : Colors.grey),
                   onTap: () {
-                    whichActionSelected = 2;
-                    setState() {
-                      whichActionSelected = 2;
-                    }
+                    setState(() => whichActionSelected = 2);
                   },
                 ),
                 SizedBox(
@@ -58,12 +51,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                           ? Colors.black
                           : Colors.grey),
                   onTap: () {
-                    print("3");
-                    whichActionSelected = 3;
-                    setState() {
-                      whichActionSelected = 3;
-                      print("3");
-                    }
+                    setState(() => whichActionSelected = 3);
                   },
                 ),
                 SizedBox(
@@ -75,22 +63,14 @@ class _AlarmScreenState extends State<AlarmScreen> {
                           ? Colors.black
                           : Colors.grey),
                   onTap: () {
-                    whichActionSelected = 4;
-                    setState() {
-                      whichActionSelected = 4;
-                    }
+                    setState(() => whichActionSelected = 4);
                   },
                 ),
               ],
             ),
           ),
-          actions: [
-            Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(Icons.more_vert),
-                )),
+          actions: <Widget>[
+            IconButton(onPressed: (){print("object");}, icon: Icon(Icons.more_vert))
           ],
         ),
         // backgroundColor: Colors.black,
