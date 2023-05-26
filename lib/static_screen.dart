@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/widgets/alarm_card.dart';
 
 class AlarmScreen extends StatefulWidget {
-  const AlarmScreen({Key? key}) : super(key: key);
+  const AlarmScreen({Key key}) : super(key: key);
 
   @override
   State<AlarmScreen> createState() => _AlarmScreenState();
@@ -70,16 +70,43 @@ class _AlarmScreenState extends State<AlarmScreen> {
             ),
           ),
           actions: <Widget>[
-            IconButton(onPressed: (){print("object");}, icon: Icon(Icons.more_vert))
+            IconButton(
+                onPressed: () {
+                  print("object");
+                },
+                icon: Icon(Icons.more_vert))
           ],
         ),
         // backgroundColor: Colors.black,
-        body: ListView.builder(
-          itemCount: 8,
-          itemBuilder: (context, index) {
-            return AlarmCard();
-          },
-        ),
+        body: (whichActionSelected == 1)
+            ? ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return AlarmCard();
+                },
+              )
+            : ((whichActionSelected == 2)
+                ? ListView.builder(
+                    itemCount: 4,
+                    itemBuilder: (context, index) {
+                      return AlarmCard();
+                    },
+                  )
+                : ((whichActionSelected == 3)
+                    ? ListView.builder(
+                        itemCount: 3,
+                        itemBuilder: (context, index) {
+                          return AlarmCard();
+                        },
+                      )
+                    : ((whichActionSelected == 4)
+                        ? ListView.builder(
+                            itemCount: 2,
+                            itemBuilder: (context, index) {
+                              return AlarmCard();
+                            },
+                          )
+                        : null))),
       ),
     );
   }

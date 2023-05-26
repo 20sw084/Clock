@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'alarm_screen.dart';
+import 'static_screen.dart';
 
 void main() {
   runApp(const Mypp());
 }
 
 class Mypp extends StatelessWidget {
-  const Mypp({Key? key}) : super(key: key);
+  const Mypp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

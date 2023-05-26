@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AlarmCard extends StatefulWidget {
-  const AlarmCard({Key? key}) : super(key: key);
+  const AlarmCard({Key key}) : super(key: key);
 
   @override
   State<AlarmCard> createState() => _AlarmCardState();
