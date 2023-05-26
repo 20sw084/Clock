@@ -72,11 +72,24 @@ class _AlarmScreenState extends State<AlarmScreen> {
             ),
           ),
           actions: <Widget>[
-            IconButton(
-                onPressed: () {
-                  print("object");
+            PopupMenuButton(
+              // add icon, by default "3 dot" icon
+              // icon: Icon(Icons.book)
+                itemBuilder: (context){
+                  return [
+                    PopupMenuItem<int>(
+                      value: 0,
+                      child: Text("Settings"),
+                    ),
+                  ];
                 },
-                icon: Icon(Icons.more_vert))
+                onSelected:(value){
+                  if(value == 0){
+                    // TODO: theme chnge on screen
+                    print("Settings Screen here.");
+                  }
+                }
+            ),
           ],
         ),
         // backgroundColor: Colors.black,
