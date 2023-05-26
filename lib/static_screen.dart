@@ -27,7 +27,9 @@ class _AlarmScreenState extends State<AlarmScreen> {
                         (whichActionSelected == 1) ? Colors.black : Colors.grey,
                   ),
                   onTap: () {
-                    setState(() => whichActionSelected = 1);
+                    setState(
+                      () => whichActionSelected = 1,
+                    );
                   },
                 ),
                 SizedBox(
