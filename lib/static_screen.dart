@@ -28,7 +28,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                   ),
                   onTap: () {
                     setState(
-                      () => whichActionSelected = 1,
+                      () => whichActionSelected = 1
                     );
                   },
                 ),
@@ -65,7 +65,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                           ? Colors.black
                           : Colors.grey),
                   onTap: () {
-                    setState(() => whichActionSelected = 4);
+                    setState(() => whichActionSelected = 4,);
                   },
                 ),
               ],
