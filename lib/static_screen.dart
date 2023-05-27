@@ -10,6 +10,7 @@ class AlarmScreen extends StatefulWidget {
 
 class _AlarmScreenState extends State<AlarmScreen> {
   int whichActionSelected = 1;
+  int alarmItems = 5;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,9 +28,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                         (whichActionSelected == 1) ? Colors.black : Colors.grey,
                   ),
                   onTap: () {
-                    setState(
-                      () => whichActionSelected = 1
-                    );
+                    setState(() => whichActionSelected = 1);
                   },
                 ),
                 SizedBox(
@@ -65,7 +64,9 @@ class _AlarmScreenState extends State<AlarmScreen> {
                           ? Colors.black
                           : Colors.grey),
                   onTap: () {
-                    setState(() => whichActionSelected = 4,);
+                    setState(
+                      () => whichActionSelected = 4,
+                    );
                   },
                 ),
               ],
@@ -73,40 +74,83 @@ class _AlarmScreenState extends State<AlarmScreen> {
           ),
           actions: <Widget>[
             PopupMenuButton(
-              // add icon, by default "3 dot" icon
-              // icon: Icon(Icons.book)
-                itemBuilder: (context){
-                  return [
-                    PopupMenuItem<int>(
-                      value: 0,
-                      child: Text("Settings"),
-                    ),
-                  ];
-                },
-                onSelected:(value){
-                  if(value == 0){
-                    // TODO: theme chnge on screen
-                    print("Settings Screen here.");
-                  }
-                }
-            ),
+                // add icon, by default "3 dot" icon
+                // icon: Icon(Icons.book)
+                itemBuilder: (context) {
+              return [
+                PopupMenuItem<int>(
+                  value: 0,
+                  child: Text("Settings"),
+                ),
+              ];
+            }, onSelected: (value) {
+              if (value == 0) {
+                // TODO: theme chnge on screen
+                print("Settings Screen here.");
+              }
+            }),
           ],
         ),
         // backgroundColor: Colors.black,
         body: (whichActionSelected == 1)
-            ? ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return AlarmCard();
-                },
-              )
-            : ((whichActionSelected == 2)
-                ? ListView.builder(
-                    itemCount: 4,
+            ? Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  ListView.builder(
+                    itemCount: alarmItems,
                     itemBuilder: (context, index) {
                       return AlarmCard();
                     },
-                  )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: FloatingActionButton(
+                      onPressed: (() {
+                        setState(() {
+                          alarmItems++;
+                        });
+                      }),
+                      child: Icon(Icons.add),
+                    ),
+                  ),
+                ],
+              )
+            : ((whichActionSelected == 2)
+                ? Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(50.0),
+                      child: Column(
+                        children: [
+                          Text("06:30:50",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
+                          Text("Current: 26/05/2023"),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            // shrinkWrap: true,
+                            itemCount: 10,
+                            itemBuilder: (context, index) {
+                              return AlarmCard();
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: FloatingActionButton(
+                              onPressed: null,
+                              child: Icon(Icons.add),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
                 : ((whichActionSelected == 3)
                     ? ListView.builder(
                         itemCount: 3,
