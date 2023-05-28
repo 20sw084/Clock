@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/widgets/alarm_card.dart';
+import 'package:untitled/widgets/timezone_card.dart';
 
 class AlarmScreen extends StatefulWidget {
   const AlarmScreen({Key key}) : super(key: key);
@@ -11,6 +12,7 @@ class AlarmScreen extends StatefulWidget {
 class _AlarmScreenState extends State<AlarmScreen> {
   int whichActionSelected = 1;
   int alarmItems = 5;
+  int timezoneItems = 5;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -134,15 +136,19 @@ class _AlarmScreenState extends State<AlarmScreen> {
                           ListView.builder(
                             scrollDirection: Axis.vertical,
                             // shrinkWrap: true,
-                            itemCount: 10,
+                            itemCount: timezoneItems,
                             itemBuilder: (context, index) {
-                              return AlarmCard();
+                              return TimezoneCard();
                             },
                           ),
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: FloatingActionButton(
-                              onPressed: null,
+                              onPressed: (() {
+                                setState(() {
+                                  timezoneItems++;
+                                });
+                              }),
                               child: Icon(Icons.add),
                             ),
                           ),
