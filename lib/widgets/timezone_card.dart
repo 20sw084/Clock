@@ -26,13 +26,13 @@ class _TimezoneState extends State<TimezoneCard> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     text: "12:00",
                     style: CustomTextStyle.formalStyle1,
-                    children: const [
+                    children: [
                       TextSpan(
                         text: "Melbourne",
-                        style: CustomTextStyle.formalStyle2,
+                        style: CustomTextStyle.formalStyle3,
                       ),
                     ],
                   ),
@@ -43,9 +43,14 @@ class _TimezoneState extends State<TimezoneCard> {
                       "28 May am",
                       style: CustomTextStyle.formalStyle2,
                     ),
-                    // Flexible(
-                    //   child: Divider(),
-                    // ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: 1, // Thickness
+                        height: 15,
+                        color: Colors.black,
+                      ),
+                    ),
                     Text(
                       "5 hrs ahead",
                       style: CustomTextStyle.formalStyle2,
@@ -79,12 +84,18 @@ class CustomTextStyle {
 // fontFamily: fontFamily,
   color: Colors.black,
     fontSize: 40,
-// fontWeight: FontWeight.bold,
+    // fontWeight: FontWeight.bold,
   );
   static const TextStyle formalStyle2 = TextStyle(
 // fontFamily: fontFamily,
     color: Colors.black,
     fontSize: 14,
 // fontWeight: FontWeight.bold,
+  );
+  static const TextStyle formalStyle3 = TextStyle(
+// fontFamily: fontFamily,
+    color: Colors.black,
+    fontSize: 17,
+    fontWeight: FontWeight.bold,
   );
 }
