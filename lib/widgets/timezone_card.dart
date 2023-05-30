@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:analog_clock/analog_clock.dart';
 
 class TimezoneCard extends StatefulWidget {
   const TimezoneCard({Key key}) : super(key: key);
@@ -59,18 +60,18 @@ class _TimezoneState extends State<TimezoneCard> {
                 ),
               ],
             ),
-            Transform.scale(
-              scale: 1.5,
-              child: Switch(
-                value: stateOfLight,
-                onChanged: (bool value) {
-                  setState(
-                        () {
-                      stateOfLight = value;
-                    },
-                  );
-                },
-              ),
+            const AnalogClock(
+              decoration: BoxDecoration(
+                  color: Colors.black,
+                  shape: BoxShape.circle,
+              ), // decoration
+              width: 150.0,
+              isLive: true,
+              hourHandColor: Colors.white,
+              minuteHandColor: Colors.white,
+              showSecondHand: false,
+              showTicks: false,
+              showDigitalClock: false,
             ),
           ],
         ),
