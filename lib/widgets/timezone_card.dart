@@ -9,7 +9,7 @@ class TimezoneCard extends StatefulWidget {
 }
 
 class _TimezoneState extends State<TimezoneCard> {
-  bool stateOfLight = false;
+  // bool stateOfLight = false;
   @override
   Widget build(BuildContext context) {
     return Padding(

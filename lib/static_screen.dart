@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/select_city_screen.dart';
 import 'package:untitled/widgets/alarm_card.dart';
 import 'package:untitled/widgets/timezone_card.dart';
 
@@ -148,6 +149,10 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                 setState(() {
                                   timezoneItems++;
                                 });
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const SelectCityScreen()),
+                                );
                               }),
                               child: Icon(Icons.add),
                             ),
