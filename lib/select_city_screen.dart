@@ -117,7 +117,8 @@ class _SelectCityScreenState extends State<SelectCityScreen> {
                     padding: const EdgeInsets.only(right: 20),
                     child: ListTile(
                       title: Text(res.last),
-                      subtitle: Text("${res.first} GMT+5:00"),
+                      // subtitle: Text("${res.first} GMT+5:00"),
+                      subtitle: Text("${res.first}"),
                     ),
                   );
                 },

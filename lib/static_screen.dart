@@ -163,12 +163,24 @@ class _AlarmScreenState extends State<AlarmScreen> {
                   ],
                 )
                 : ((whichActionSelected == 3)
-                    ? ListView.builder(
-                        itemCount: 3,
-                        itemBuilder: (context, index) {
-                          return AlarmCard();
-                        },
-                      )
+                    ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text("00:00.00", style: TextStyle(fontSize: 65),),
+                          FloatingActionButton(
+                            onPressed: null,
+                            child: Icon(Icons.play_arrow,size: 30,),
+                          )
+                          // ListView.builder(
+                          //     itemCount: 3,
+                          //     itemBuilder: (context, index) {
+                          //       return AlarmCard();
+                          //     },
+                          //   ),
+                        ],
+                      ),
+                    )
                     : ((whichActionSelected == 4)
                         ? ListView.builder(
                             itemCount: 2,
