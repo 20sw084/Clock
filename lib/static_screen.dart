@@ -14,6 +14,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
   int whichActionSelected = 1;
   int alarmItems = 5;
   int timezoneItems = 5;
+  final stopwatch = Stopwatch();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -167,11 +168,31 @@ class _AlarmScreenState extends State<AlarmScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text("00:00.00", style: TextStyle(fontSize: 65),),
-                          FloatingActionButton(
-                            onPressed: null,
-                            child: Icon(Icons.play_arrow,size: 30,),
-                          )
+                          Text("00:00.00", style: TextStyle(fontSize: 65,),),
+                          ((stopwatch.isRunning)?Row(
+                            children: [
+                              FloatingActionButton(
+                                onPressed: null,
+                                child: Icon(Icons.reset_tv,size: 30,),//Icon(Icons.play_arrow,size: 30,),
+                              ),
+                              FloatingActionButton(
+                                onPressed: null,
+                                child: Icon(Icons.pause,size: 30,),//Icon(Icons.play_arrow,size: 30,),
+                              ),
+                            ],
+                          ):FloatingActionButton(
+                            onPressed: (){},
+                            child: Icon(Icons.play_arrow,size: 30,),//Icon(Icons.play_arrow,size: 30,),
+                          )),
+                          // FloatingActionButton(
+                          //   onPressed: null,
+                          //   child: ((stopwatch.isRunning)?Row(
+                          //     children: [
+                          //       Icon(Icons.reset_tv,size: 30,),
+                          //       Icon(Icons.pause,size: 30,),
+                          //     ],
+                          //   ):Icon(Icons.play_arrow,size: 30,)), //Icon(Icons.play_arrow,size: 30,),
+                          // )
                           // ListView.builder(
                           //     itemCount: 3,
                           //     itemBuilder: (context, index) {
