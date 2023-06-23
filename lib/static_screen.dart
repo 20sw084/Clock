@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/select_city_screen.dart';
 import 'package:untitled/widgets/alarm_card.dart';
@@ -14,7 +17,66 @@ class _AlarmScreenState extends State<AlarmScreen> {
   int whichActionSelected = 1;
   int alarmItems = 5;
   int timezoneItems = 5;
-  final stopwatch = Stopwatch();
+  int seconds = 0, minutes = 0, hours = 0;
+  String digitSeconds = "00", digitMinutes = "00", digitHours = "00";
+  Timer timer;
+  bool isRunning = false;
+  List laps = [];
+
+  void start() {
+    isRunning = true;
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      int localSeconds = seconds + 1;
+      int localMinutes = minutes;
+      int localHours = hours;
+
+      if (localSeconds > 59) {
+        if (localMinutes > 59) {
+          localHours++;
+          localMinutes = 0;
+        } else {
+          localMinutes++;
+          localSeconds = 0;
+        }
+      }
+      setState(() {
+        seconds = localSeconds;
+        minutes = localMinutes;
+        hours = localHours;
+
+        digitSeconds = (seconds < 10) ? "0$seconds" : "$seconds";
+        digitMinutes = (minutes < 10) ? "0$minutes" : "$minutes";
+        digitHours = (hours < 10) ? "0$hours" : "$hours";
+      });
+    });
+  }
+
+  void stop() {
+    timer.cancel();
+    setState(() {
+      isRunning = false;
+    });
+  }
+
+  void reset() {
+    timer.cancel();
+    setState(() {
+      seconds = 0;
+      minutes = 0;
+      hours = 0;
+      digitSeconds = "00";
+      digitMinutes = "00";
+      digitHours = "00";
+      isRunning = false;
+    });
+  }
+
+  void lap() {
+    String lap = "$digitHours:$digitMinutes:$digitSeconds";
+    setState(() {
+      laps.add(lap);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,18 +238,20 @@ class _AlarmScreenState extends State<AlarmScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              stopwatch.elapsedMilliseconds.toString(),
+                              "$digitHours:$digitMinutes:$digitSeconds",
                               style: TextStyle(
                                 fontSize: 65,
                               ),
                             ),
-                            ((stopwatch.isRunning)
+                            ((isRunning)
                                 ? Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       FloatingActionButton(
-                                        onPressed: null,
+                                        onPressed: () {
+                                          reset();
+                                        },
                                         child: Icon(
                                           Icons.reset_tv,
                                           size: 30,
@@ -195,9 +259,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                       ),
                                       FloatingActionButton(
                                         onPressed: () {
-                                          setState(() {
-                                            stopwatch.stop();
-                                          });
+                                          stop();
                                         },
                                         child: Icon(
                                           Icons.pause,
@@ -206,17 +268,50 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                       ),
                                     ],
                                   )
-                                : FloatingActionButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        stopwatch.start();
-                                      });
-                                    },
-                                    child: Icon(
-                                      Icons.play_arrow,
-                                      size: 30,
-                                    ), //Icon(Icons.play_arrow,size: 30,),
-                                  )),
+                                : ((seconds == 0)
+                                    ? FloatingActionButton(
+                                        onPressed: () {
+                                          start();
+                                        },
+                                        child: Icon(
+                                          Icons.play_arrow,
+                                          size: 30,
+                                        ), //Icon(Icons.play_arrow,size: 30,),
+                                      )
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          FloatingActionButton(
+                                            onPressed: () {
+                                              // Lps
+                                            },
+                                            child: Icon(
+                                              Icons.laptop,
+                                              size: 30,
+                                            ), //Icon(Icons.play_arrow,size: 30,),
+                                          ),
+                                          FloatingActionButton(
+                                            onPressed: () {
+                                              start();
+                                            },
+                                            child: Icon(
+                                              Icons.play_arrow,
+                                              size: 30,
+                                            ), //Icon(Icons.play_arrow,size: 30,),
+                                          ),
+                                        ],
+                                      ))
+                            // FloatingActionButton(
+                            //         onPressed: () {
+                            //           start();
+                            //         },
+                            //         child: Icon(
+                            //           Icons.play_arrow,
+                            //           size: 30,
+                            //         ), //Icon(Icons.play_arrow,size: 30,),
+                            //       )
+                            ),
                             // FloatingActionButton(
                             //   onPressed: null,
                             //   child: ((stopwatch.isRunning)?Row(
