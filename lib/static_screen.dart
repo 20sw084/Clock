@@ -15,6 +15,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
   int alarmItems = 5;
   int timezoneItems = 5;
   final stopwatch = Stopwatch();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -121,87 +122,119 @@ class _AlarmScreenState extends State<AlarmScreen> {
               )
             : ((whichActionSelected == 2)
                 ? Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(50.0),
-                      child: Column(
-                        children: [
-                          Text("06:30:50",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
-                          Text("Current: 26/05/2023"),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Stack(
-                        alignment: Alignment.bottomCenter,
-                        children: [
-                          ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            // shrinkWrap: true,
-                            itemCount: timezoneItems,
-                            itemBuilder: (context, index) {
-                              return TimezoneCard();
-                            },
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: FloatingActionButton(
-                              onPressed: (() {
-                                setState(() {
-                                  timezoneItems++;
-                                });
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const SelectCityScreen()),
-                                );
-                              }),
-                              child: Icon(Icons.add),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(50.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              "06:30:50",
+                              style: TextStyle(
+                                  fontSize: 40, fontWeight: FontWeight.bold),
                             ),
-                          ),
-                        ],
+                            Text("Current: 26/05/2023"),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                )
+                      Expanded(
+                        child: Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              // shrinkWrap: true,
+                              itemCount: timezoneItems,
+                              itemBuilder: (context, index) {
+                                return TimezoneCard();
+                              },
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: FloatingActionButton(
+                                onPressed: (() {
+                                  setState(() {
+                                    timezoneItems++;
+                                  });
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SelectCityScreen()),
+                                  );
+                                }),
+                                child: Icon(Icons.add),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
                 : ((whichActionSelected == 3)
                     ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text("00:00.00", style: TextStyle(fontSize: 65,),),
-                          ((stopwatch.isRunning)?Row(
-                            children: [
-                              FloatingActionButton(
-                                onPressed: null,
-                                child: Icon(Icons.reset_tv,size: 30,),//Icon(Icons.play_arrow,size: 30,),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              stopwatch.elapsedMilliseconds.toString(),
+                              style: TextStyle(
+                                fontSize: 65,
                               ),
-                              FloatingActionButton(
-                                onPressed: null,
-                                child: Icon(Icons.pause,size: 30,),//Icon(Icons.play_arrow,size: 30,),
-                              ),
-                            ],
-                          ):FloatingActionButton(
-                            onPressed: (){},
-                            child: Icon(Icons.play_arrow,size: 30,),//Icon(Icons.play_arrow,size: 30,),
-                          )),
-                          // FloatingActionButton(
-                          //   onPressed: null,
-                          //   child: ((stopwatch.isRunning)?Row(
-                          //     children: [
-                          //       Icon(Icons.reset_tv,size: 30,),
-                          //       Icon(Icons.pause,size: 30,),
-                          //     ],
-                          //   ):Icon(Icons.play_arrow,size: 30,)), //Icon(Icons.play_arrow,size: 30,),
-                          // )
-                          // ListView.builder(
-                          //     itemCount: 3,
-                          //     itemBuilder: (context, index) {
-                          //       return AlarmCard();
-                          //     },
-                          //   ),
-                        ],
-                      ),
-                    )
+                            ),
+                            ((stopwatch.isRunning)
+                                ? Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      FloatingActionButton(
+                                        onPressed: null,
+                                        child: Icon(
+                                          Icons.reset_tv,
+                                          size: 30,
+                                        ), //Icon(Icons.play_arrow,size: 30,),
+                                      ),
+                                      FloatingActionButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            stopwatch.stop();
+                                          });
+                                        },
+                                        child: Icon(
+                                          Icons.pause,
+                                          size: 30,
+                                        ), //Icon(Icons.play_arrow,size: 30,),
+                                      ),
+                                    ],
+                                  )
+                                : FloatingActionButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        stopwatch.start();
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.play_arrow,
+                                      size: 30,
+                                    ), //Icon(Icons.play_arrow,size: 30,),
+                                  )),
+                            // FloatingActionButton(
+                            //   onPressed: null,
+                            //   child: ((stopwatch.isRunning)?Row(
+                            //     children: [
+                            //       Icon(Icons.reset_tv,size: 30,),
+                            //       Icon(Icons.pause,size: 30,),
+                            //     ],
+                            //   ):Icon(Icons.play_arrow,size: 30,)), //Icon(Icons.play_arrow,size: 30,),
+                            // )
+                            // ListView.builder(
+                            //     itemCount: 3,
+                            //     itemBuilder: (context, index) {
+                            //       return AlarmCard();
+                            //     },
+                            //   ),
+                          ],
+                        ),
+                      )
                     : ((whichActionSelected == 4)
                         ? ListView.builder(
                             itemCount: 2,
