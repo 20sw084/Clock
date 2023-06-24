@@ -68,6 +68,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
       digitMinutes = "00";
       digitHours = "00";
       isRunning = false;
+      laps = [];
     });
   }
 
@@ -243,6 +244,24 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                 fontSize: 65,
                               ),
                             ),
+                            Container(
+                              height: 200,
+                              width: MediaQuery.of(context).size.width,
+                              child: ListView.builder(
+                                  itemCount: laps.length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Lap # ${index+1}",style: TextStyle(fontSize: 30),),
+                                          Text("${laps[index]}",style: TextStyle(fontSize: 30),),
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                            ),
                             ((isRunning)
                                 ? Row(
                                     mainAxisAlignment:
@@ -250,7 +269,8 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                     children: [
                                       FloatingActionButton(
                                         onPressed: () {
-                                          reset();
+                                          // Lps
+                                          lap();
                                         },
                                         child: Icon(
                                           Icons.reset_tv,
@@ -259,7 +279,9 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                       ),
                                       FloatingActionButton(
                                         onPressed: () {
-                                          stop();
+                                          setState(() {
+                                            stop();
+                                          });
                                         },
                                         child: Icon(
                                           Icons.pause,
@@ -284,7 +306,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                         children: [
                                           FloatingActionButton(
                                             onPressed: () {
-                                              // Lps
+                                              reset();
                                             },
                                             child: Icon(
                                               Icons.laptop,
