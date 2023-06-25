@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:analog_clock/analog_clock.dart';
 
 class TimezoneCard extends StatefulWidget {
-  const TimezoneCard({Key key}) : super(key: key);
+  const TimezoneCard({Key? key}) : super(key: key);
 
   @override
   State<TimezoneCard> createState() => _TimezoneState();

@@ -4,7 +4,7 @@ import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:alphabet_scroll_view/alphabet_scroll_view.dart';
 
 class SelectCityScreen extends StatefulWidget {
-  const SelectCityScreen({Key key}) : super(key: key);
+  const SelectCityScreen({Key? key}) : super(key: key);
 
   @override
   State<SelectCityScreen> createState() => _SelectCityScreenState();

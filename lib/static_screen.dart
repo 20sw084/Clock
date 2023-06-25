@@ -1,25 +1,26 @@
 import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:untitled/select_city_screen.dart';
 import 'package:untitled/widgets/alarm_card.dart';
 import 'package:untitled/widgets/timezone_card.dart';
 
+import 'external_libs/flutter_time_picker_spinner.dart';
+
 class AlarmScreen extends StatefulWidget {
-  const AlarmScreen({Key key}) : super(key: key);
+  const AlarmScreen({Key? key}) : super(key: key);
 
   @override
   State<AlarmScreen> createState() => _AlarmScreenState();
 }
 
 class _AlarmScreenState extends State<AlarmScreen> {
+  DateTime _dateTime = DateTime.now();
   int whichActionSelected = 1;
   int alarmItems = 5;
   int timezoneItems = 5;
   int seconds = 0, minutes = 0, hours = 0;
   String digitSeconds = "00", digitMinutes = "00", digitHours = "00";
-  Timer timer;
+  Timer? timer;
   bool isRunning = false;
   List laps = [];
 
@@ -52,14 +53,14 @@ class _AlarmScreenState extends State<AlarmScreen> {
   }
 
   void stop() {
-    timer.cancel();
+    timer?.cancel();
     setState(() {
       isRunning = false;
     });
   }
 
   void reset() {
-    timer.cancel();
+    timer?.cancel();
     setState(() {
       seconds = 0;
       minutes = 0;
@@ -253,10 +254,17 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                     return Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Lap # ${index+1}",style: TextStyle(fontSize: 30),),
-                                          Text("${laps[index]}",style: TextStyle(fontSize: 30),),
+                                          Text(
+                                            "Lap # ${index + 1}",
+                                            style: TextStyle(fontSize: 30),
+                                          ),
+                                          Text(
+                                            "${laps[index]}",
+                                            style: TextStyle(fontSize: 30),
+                                          ),
                                         ],
                                       ),
                                     );
@@ -353,14 +361,110 @@ class _AlarmScreenState extends State<AlarmScreen> {
                         ),
                       )
                     : ((whichActionSelected == 4)
-                        ? ListView.builder(
-                            itemCount: 2,
-                            itemBuilder: (context, index) {
-                              return AlarmCard();
-                            },
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                children: <Widget>[
+           // hourMinute12H(),
+                                  // hourMinute15Interval(),
+           hourMinuteSecond(),
+//            hourMinute12HCustomStyle(),
+                                  new Container(
+                                    margin: EdgeInsets.symmetric(vertical: 50),
+                                    child: new Text(
+                                      _dateTime.hour
+                                              .toString()
+                                              .padLeft(2, '0') +
+                                          ':' +
+                                          _dateTime.minute
+                                              .toString()
+                                              .padLeft(2, '0') +
+                                          ':' +
+                                          _dateTime.second
+                                              .toString()
+                                              .padLeft(2, '0'),
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  FloatingActionButton(
+                                    onPressed: null,
+                                    child: Icon(Icons.waves_sharp),
+                                  ),
+                                  FloatingActionButton(
+                                    onPressed: null,
+                                    child: Icon(Icons.play_arrow),
+                                  ),
+                                  FloatingActionButton(
+                                    onPressed: null,
+                                    child: Icon(Icons.assignment_rounded),
+                                  ),
+                                ],
+                              ),
+                            ],
                           )
                         : null))),
       ),
+    );
+  }
+
+  /// SAMPLE
+  Widget hourMinute12H() {
+    return new TimePickerSpinner(
+      is24HourMode: false,
+      onTimeChange: (time) {
+        setState(() {
+          _dateTime = time;
+        });
+      },
+    );
+  }
+
+  Widget hourMinuteSecond() {
+    return TimePickerSpinner(
+      isShowSeconds: true,
+      onTimeChange: (time) {
+        setState(() {
+          _dateTime = time;
+        });
+      },
+    );
+  }
+
+  Widget hourMinute15Interval() {
+    return new TimePickerSpinner(
+      spacing: 40,
+      minutesInterval: 15,
+      onTimeChange: (time) {
+        setState(() {
+          _dateTime = time;
+        });
+      },
+    );
+  }
+
+  Widget hourMinute12HCustomStyle() {
+    return new TimePickerSpinner(
+      is24HourMode: false,
+      normalTextStyle: TextStyle(fontSize: 24, color: Colors.deepOrange),
+      highlightedTextStyle: TextStyle(fontSize: 24, color: Colors.yellow),
+      spacing: 50,
+      itemHeight: 80,
+      isForce2Digits: true,
+      minutesInterval: 15,
+      onTimeChange: (time) {
+        setState(() {
+          _dateTime = time;
+        });
+      },
     );
   }
 }

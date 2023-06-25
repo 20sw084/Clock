@@ -6,7 +6,7 @@ void main() {
 }
 
 class Mypp extends StatelessWidget {
-  const Mypp({Key key}) : super(key: key);
+  const Mypp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
