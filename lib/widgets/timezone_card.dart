@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:analog_clock/analog_clock.dart';
+import '../external_libs/analog_clock/analog_clock.dart';
 
 class TimezoneCard extends StatefulWidget {
   const TimezoneCard({Key? key}) : super(key: key);

@@ -4,7 +4,7 @@ import 'package:untitled/select_city_screen.dart';
 import 'package:untitled/widgets/alarm_card.dart';
 import 'package:untitled/widgets/timezone_card.dart';
 
-import 'external_libs/flutter_time_picker_spinner.dart';
+import 'external_libs/flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 
 class AlarmScreen extends StatefulWidget {
   const AlarmScreen({Key? key}) : super(key: key);
