@@ -23,6 +23,8 @@ class _AlarmScreenState extends State<AlarmScreen> {
   Timer? timer;
   bool isRunning = false;
   List laps = [];
+  bool assignmentButtonFlag = false;
+  bool wavesButtonFlag = false;
 
   void start() {
     isRunning = true;
@@ -362,47 +364,70 @@ class _AlarmScreenState extends State<AlarmScreen> {
                       )
                     : ((whichActionSelected == 4)
                         ? Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
+                              hourMinuteSecond(),
                               Column(
-                                children: <Widget>[
-                                  hourMinuteSecond(),
+                                children: [
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 50),
-                                    child: Text(
-                                      _dateTime.hour
-                                              .toString()
-                                              .padLeft(2, '0') +
-                                          ':' +
-                                          _dateTime.minute
-                                              .toString()
-                                              .padLeft(2, '0') +
-                                          ':' +
-                                          _dateTime.second
-                                              .toString()
-                                              .padLeft(2, '0'),
-                                      style: TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold),
+                                    height: 100,
+                                    child: ListView(
+                                      // This next line does the trick.
+                                      scrollDirection: Axis.horizontal,
+                                      children: <Widget>[
+                                        Container(
+                                          width: 160,
+                                          color: Colors.red,
+                                          child: Icon(Icons.not_interested),
+                                        ),
+                                        Container(
+                                          width: 160,
+                                          color: Colors.blue,
+                                          child: Icon(Icons.forest),
+                                        ),
+                                        Container(
+                                          width: 160,
+                                          color: Colors.green,
+                                        ),
+                                        Container(
+                                          width: 160,
+                                          color: Colors.yellow,
+                                        ),
+                                        Container(
+                                          width: 160,
+                                          color: Colors.orange,
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  FloatingActionButton(
-                                    onPressed: null,
-                                    child: Icon(Icons.waves_sharp),
-                                  ),
-                                  FloatingActionButton(
-                                    onPressed: null,
-                                    child: Icon(Icons.play_arrow),
-                                  ),
-                                  FloatingActionButton(
-                                    onPressed: null,
-                                    child: Icon(Icons.assignment_rounded),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      FloatingActionButton(
+                                        onPressed: (){
+                                          setState(() {
+                                            wavesButtonFlag = (!wavesButtonFlag);
+                                            assignmentButtonFlag = false;
+                                          });
+                                        },
+                                        foregroundColor: Colors.grey,
+                                        backgroundColor: (wavesButtonFlag?Colors.blue:Colors.white),
+                                        child: Icon(Icons.waves_sharp),
+                                      ),
+                                      FloatingActionButton(
+                                        onPressed: null,
+                                        backgroundColor: Colors.white,
+                                        foregroundColor: Colors.blue,
+                                        child: Icon(Icons.play_arrow,size: 35,),
+                                      ),
+                                      FloatingActionButton(
+                                        onPressed: null,
+                                        backgroundColor: Colors.white,
+                                        foregroundColor: Colors.grey,
+                                        child: Icon(Icons.assignment_rounded),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -465,3 +490,25 @@ class _AlarmScreenState extends State<AlarmScreen> {
     );
   }
 }
+
+
+
+// Container(
+//   margin: EdgeInsets.symmetric(vertical: 50),
+//   child: Text(
+//     _dateTime.hour
+//             .toString()
+//             .padLeft(2, '0') +
+//         ':' +
+//         _dateTime.minute
+//             .toString()
+//             .padLeft(2, '0') +
+//         ':' +
+//         _dateTime.second
+//             .toString()
+//             .padLeft(2, '0'),
+//     style: TextStyle(
+//         fontSize: 24,
+//         fontWeight: FontWeight.bold),
+//   ),
+// ),

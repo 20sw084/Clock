@@ -120,13 +120,13 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
 
   /// default settings
   TextStyle defaultHighlightTextStyle =
-      TextStyle(fontSize: 32, color: Colors.black);
+      TextStyle(fontSize: 40, color: Colors.black);
   TextStyle defaultNormalTextStyle =
-      TextStyle(fontSize: 32, color: Colors.black54);
-  double defaultItemHeight = 60;
-  double defaultItemWidth = 45;
+      TextStyle(fontSize: 37, color: Colors.black54);
+  double defaultItemHeight = 55;
+  double defaultItemWidth = 90;
   double defaultSpacing = 20;
-  AlignmentGeometry defaultAlignment = Alignment.centerRight;
+  AlignmentGeometry defaultAlignment = Alignment.center;
 
   /// getter
 
