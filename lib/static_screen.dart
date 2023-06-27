@@ -366,13 +366,10 @@ class _AlarmScreenState extends State<AlarmScreen> {
                             children: [
                               Column(
                                 children: <Widget>[
-           // hourMinute12H(),
-                                  // hourMinute15Interval(),
-           hourMinuteSecond(),
-//            hourMinute12HCustomStyle(),
-                                  new Container(
+                                  hourMinuteSecond(),
+                                  Container(
                                     margin: EdgeInsets.symmetric(vertical: 50),
-                                    child: new Text(
+                                    child: Text(
                                       _dateTime.hour
                                               .toString()
                                               .padLeft(2, '0') +
