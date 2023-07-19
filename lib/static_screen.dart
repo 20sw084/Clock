@@ -369,7 +369,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                               hourMinuteSecond(),
                               Column(
                                 children: [
-                                  Container(
+                                  (wavesButtonFlag)?Container(
                                     height: 100,
                                     child: ListView(
                                       // This next line does the trick.
@@ -403,7 +403,76 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                         ),
                                       ],
                                     ),
-                                  ),
+                                  ):(assignmentButtonFlag)?Container(
+                                    height: 100,
+                                    child: ListView(
+                                      // This next line does the trick.
+                                      scrollDirection: Axis.horizontal,
+                                      children: <Widget>[
+                                        Container(
+                                          width: 100,
+                                          color: Colors.red,
+                                          child: Icon(Icons.not_interested),
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          color: Colors.blue,
+                                          child: Icon(Icons.forest),
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          color: Colors.green,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          color: Colors.yellow,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          color: Colors.orange,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          color: Colors.purple,
+                                        ),
+                                      ],
+                                    ),
+                                  ):Container(),
+                                  // Container(
+                                  //   height: 100,
+                                  //   child: ListView(
+                                  //     // This next line does the trick.
+                                  //     scrollDirection: Axis.horizontal,
+                                  //     children: <Widget>[
+                                  //       Container(
+                                  //         width: 100,
+                                  //         color: Colors.red,
+                                  //         child: Icon(Icons.not_interested),
+                                  //       ),
+                                  //       Container(
+                                  //         width: 100,
+                                  //         color: Colors.blue,
+                                  //         child: Icon(Icons.forest),
+                                  //       ),
+                                  //       Container(
+                                  //         width: 100,
+                                  //         color: Colors.green,
+                                  //       ),
+                                  //       Container(
+                                  //         width: 100,
+                                  //         color: Colors.yellow,
+                                  //       ),
+                                  //       Container(
+                                  //         width: 100,
+                                  //         color: Colors.orange,
+                                  //       ),
+                                  //       Container(
+                                  //         width: 100,
+                                  //         color: Colors.purple,
+                                  //       ),
+                                  //     ],
+                                  //   ),
+                                  // ),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
