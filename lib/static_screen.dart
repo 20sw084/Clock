@@ -376,26 +376,30 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                       scrollDirection: Axis.horizontal,
                                       children: <Widget>[
                                         Container(
-                                          width: 160,
+                                          width: 100,
                                           color: Colors.red,
                                           child: Icon(Icons.not_interested),
                                         ),
                                         Container(
-                                          width: 160,
+                                          width: 100,
                                           color: Colors.blue,
                                           child: Icon(Icons.forest),
                                         ),
                                         Container(
-                                          width: 160,
+                                          width: 100,
                                           color: Colors.green,
                                         ),
                                         Container(
-                                          width: 160,
+                                          width: 100,
                                           color: Colors.yellow,
                                         ),
                                         Container(
-                                          width: 160,
+                                          width: 100,
                                           color: Colors.orange,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          color: Colors.purple,
                                         ),
                                       ],
                                     ),
@@ -405,25 +409,39 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       FloatingActionButton(
-                                        onPressed: (){
+                                        onPressed: () {
                                           setState(() {
-                                            wavesButtonFlag = (!wavesButtonFlag);
+                                            wavesButtonFlag =
+                                                (!wavesButtonFlag);
                                             assignmentButtonFlag = false;
                                           });
                                         },
                                         foregroundColor: Colors.grey,
-                                        backgroundColor: (wavesButtonFlag?Colors.blue:Colors.white),
+                                        backgroundColor: (wavesButtonFlag
+                                            ? Colors.blue
+                                            : Colors.white),
                                         child: Icon(Icons.waves_sharp),
                                       ),
                                       FloatingActionButton(
-                                        onPressed: null,
                                         backgroundColor: Colors.white,
                                         foregroundColor: Colors.blue,
-                                        child: Icon(Icons.play_arrow,size: 35,),
+                                        onPressed: () {},
+                                        child: Icon(
+                                          Icons.play_arrow,
+                                          size: 35,
+                                        ),
                                       ),
                                       FloatingActionButton(
-                                        onPressed: null,
-                                        backgroundColor: Colors.white,
+                                        onPressed: () {
+                                          setState(() {
+                                            assignmentButtonFlag =
+                                                (!assignmentButtonFlag);
+                                            wavesButtonFlag = false;
+                                          });
+                                        },
+                                        backgroundColor: (assignmentButtonFlag
+                                            ? Colors.blue
+                                            : Colors.white),
                                         foregroundColor: Colors.grey,
                                         child: Icon(Icons.assignment_rounded),
                                       ),
@@ -490,8 +508,6 @@ class _AlarmScreenState extends State<AlarmScreen> {
     );
   }
 }
-
-
 
 // Container(
 //   margin: EdgeInsets.symmetric(vertical: 50),
