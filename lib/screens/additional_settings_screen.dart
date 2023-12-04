@@ -18,7 +18,9 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: null,
+            onPressed: (){
+              Navigator.pop(context);
+            },
             icon: Icon(
               Icons.done,
             ),
@@ -131,13 +133,55 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
                   trailing: Text("Enter Label"),
                 ),
                 onTap: (){
-
+                  _showInputDialog(context);
                 },
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _showInputDialog(BuildContext context) async {
+    TextEditingController _textController = TextEditingController();
+
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          alignment: Alignment.bottomRight,
+          title: Text('Add Alarm Label'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextField(
+                controller: _textController,
+                decoration: InputDecoration(
+                  labelText: 'Enter Label',
+                  hintText: 'Label hint text',
+                ),
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Cancel button action
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                // OK button action, you can use _textController.text to get the input
+                print('Entered Label: ${_textController.text}');
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
