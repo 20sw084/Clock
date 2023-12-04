@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 // import 'external_libs/flutter_native_timezone/flutter_native_timezone.dart';
 
-import 'external_libs/alphabet_scroll_view/src/alphabet_scroll.dart';
+import '../external_libs/alphabet_scroll_view/src/alphabet_scroll.dart';
 
 class SelectCityScreen extends StatefulWidget {
   const SelectCityScreen({Key? key}) : super(key: key);

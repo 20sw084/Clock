@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:alarm_app/select_city_screen.dart';
+import 'package:alarm_app/screens/select_city_screen.dart';
 import 'package:alarm_app/widgets/alarm_card.dart';
 import 'package:alarm_app/widgets/timezone_card.dart';
-import 'external_libs/flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+import '../external_libs/flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 
 class AlarmScreen extends StatefulWidget {
   const AlarmScreen({Key? key}) : super(key: key);
