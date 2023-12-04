@@ -1,3 +1,4 @@
+import 'package:alarm_app/screens/additional_settings_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +58,7 @@ class _AlarmCardState extends State<AlarmCard> {
                   value: stateOfLight,
                   onChanged: (bool value) {
                     setState(
-                          () {
+                      () {
                         stateOfLight = value;
                       },
                     );
@@ -75,13 +76,12 @@ class _AlarmCardState extends State<AlarmCard> {
             },
           );
         },
-        onDoubleTap: (){
+        onDoubleTap: () {
           // TODO: Delete Card Functionality should be implemented here.
         },
       ),
     );
   }
-
 }
 
 class CustomDialog extends StatefulWidget {
@@ -130,8 +130,8 @@ class _CustomDialogState extends State<CustomDialog> {
                     value: stateOfButton,
                     onChanged: (bool value) {
                       setState(
-                            () {
-                            stateOfButton = value;
+                        () {
+                          stateOfButton = value;
                         },
                       );
                     },
@@ -147,9 +147,14 @@ class _CustomDialogState extends State<CustomDialog> {
                   // Scrollable buttons for AM/PM, Hours (01-12), Minutes (00-59)
                   ScrollButton(items: ['AM', 'PM'], title: 'AM/PM'),
                   VerticalDivider(),
-                  ScrollButton(items: List.generate(12, (index) => '${index + 1}'), title: 'Hours'),
+                  ScrollButton(
+                      items: List.generate(12, (index) => '${index + 1}'),
+                      title: 'Hours'),
                   VerticalDivider(),
-                  ScrollButton(items: List.generate(60, (index) => '${index.toString().padLeft(2, '0')}'), title: 'Minutes'),
+                  ScrollButton(
+                      items: List.generate(
+                          60, (index) => '${index.toString().padLeft(2, '0')}'),
+                      title: 'Minutes'),
                 ],
               ),
             ),
@@ -159,8 +164,12 @@ class _CustomDialogState extends State<CustomDialog> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // Additional Settings button pressed
-                    // Implement additional settings logic here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AdditionalSettingsScreen(),
+                      ),
+                    );
                   },
                   child: Text('Additional Settings'),
                 ),
@@ -183,13 +192,13 @@ class _CustomDialogState extends State<CustomDialog> {
 class CustomTextStyle {
   static const TextStyle formalStyle1 = TextStyle(
 // fontFamily: fontFamily,
-color: Colors.black,
+    color: Colors.black,
     fontSize: 40,
 // fontWeight: FontWeight.bold,
   );
   static const TextStyle formalStyle2 = TextStyle(
 // fontFamily: fontFamily,
-color: Colors.black,
+    color: Colors.black,
     fontSize: 14,
 // fontWeight: FontWeight.bold,
   );
