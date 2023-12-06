@@ -20,6 +20,7 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
           IconButton(
             onPressed: (){
               Navigator.pop(context);
+              Navigator.pop(context);
             },
             icon: Icon(
               Icons.done,
@@ -28,7 +29,10 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
         ],
         leading: IconButton(
           icon: Icon(Icons.close),
-          onPressed: null,
+          onPressed: (){
+            Navigator.pop(context);
+            Navigator.pop(context);
+          },
         ),
         title: Center(
           child: Column(
