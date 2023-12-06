@@ -27,7 +27,7 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
           ),
         ],
         leading: IconButton(
-          icon: Icon(Icons.not_interested_rounded),
+          icon: Icon(Icons.close),
           onPressed: null,
         ),
         title: Center(
@@ -50,6 +50,7 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Scrollable buttons for AM/PM, Hours (01-12), Minutes (00-59)
                 ScrollButton(items: ['AM', 'PM'], title: 'AM/PM'),
@@ -73,7 +74,7 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
             child: ListTile(
               title: Text("Ringtone"),
               trailing: Container(
-                width: MediaQuery.of(context).size.width * 0.3,
+                width: MediaQuery.of(context).size.width * 0.32,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -89,7 +90,7 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
             child: ListTile(
               title: Text("Repeat"),
               trailing: Container(
-                width: MediaQuery.of(context).size.width * 0.3,
+                width: MediaQuery.of(context).size.width * 0.32,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

@@ -37,7 +37,7 @@ class _ScrollButtonState extends State<ScrollButton> {
             },
             children: List<Widget>.generate(widget.items.length, (int index) {
               return Center(
-                child: Text(widget.items[index]),
+                child: Text(widget.items[index],),
               );
             }),
           ),
