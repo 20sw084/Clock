@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:alarm_app/screens/select_city_screen.dart';
 import 'package:alarm_app/widgets/alarm_card.dart';
 import 'package:alarm_app/widgets/timezone_card.dart';
+import 'package:provider/provider.dart';
 import '../external_libs/flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+import '../providers/time_provider.dart';
 
 class AlarmScreen extends StatefulWidget {
   const AlarmScreen({Key? key}) : super(key: key);
@@ -191,15 +193,19 @@ class _AlarmScreenState extends State<AlarmScreen> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(50.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              "06:30:50",
-                              style: TextStyle(
-                                  fontSize: 40, fontWeight: FontWeight.bold),
-                            ),
-                            Text("Current: 26/05/2023"),
-                          ],
+                        child: Consumer<TimeModel>(
+                          builder: (context, timeProvider, child) {
+                            // Todo: Should have 03 in time instead of 3
+                            return Column(
+                              children: [
+                                Text(
+                                  '${timeProvider.currentTime}',
+                                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.normal),
+                                ),
+                                Text("Current: ${timeProvider.currentDate}"),
+                              ],
+                            );
+                          },
                         ),
                       ),
                       Expanded(
