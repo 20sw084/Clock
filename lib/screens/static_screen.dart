@@ -200,7 +200,9 @@ class _AlarmScreenState extends State<AlarmScreen> {
                               children: [
                                 Text(
                                   '${timeProvider.currentTime}',
-                                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.normal),
+                                  style: TextStyle(
+                                      fontSize: 45,
+                                      fontWeight: FontWeight.normal),
                                 ),
                                 Text("Current: ${timeProvider.currentDate}"),
                               ],
@@ -375,75 +377,102 @@ class _AlarmScreenState extends State<AlarmScreen> {
                               hourMinuteSecond(),
                               Column(
                                 children: [
-                                  (wavesButtonFlag)?Container(
-                                    height: 100,
-                                    child: ListView(
-                                      // This next line does the trick.
-                                      scrollDirection: Axis.horizontal,
-                                      children: <Widget>[
-                                        Container(
-                                          width: 100,
-                                          color: Colors.red,
-                                          child: Icon(Icons.not_interested),
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          color: Colors.blue,
-                                          child: Icon(Icons.forest),
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          color: Colors.green,
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          color: Colors.yellow,
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          color: Colors.orange,
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          color: Colors.purple,
-                                        ),
-                                      ],
-                                    ),
-                                  ):(assignmentButtonFlag)?Container(
-                                    height: 100,
-                                    child: ListView(
-                                      // This next line does the trick.
-                                      scrollDirection: Axis.horizontal,
-                                      children: <Widget>[
-                                        Container(
-                                          width: 100,
-                                          color: Colors.red,
-                                          child: Icon(Icons.not_interested),
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          color: Colors.blue,
-                                          child: Icon(Icons.forest),
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          color: Colors.green,
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          color: Colors.yellow,
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          color: Colors.orange,
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          color: Colors.purple,
-                                        ),
-                                      ],
-                                    ),
-                                  ):Container(),
+                                  (wavesButtonFlag)
+                                      ? Container(
+                                          height: 100,
+                                          child: ListView(
+                                            // This next line does the trick.
+                                            scrollDirection: Axis.horizontal,
+                                            children: <Widget>[
+                                              Container(
+                                                width: 100,
+                                                color: Colors.red,
+                                                child:
+                                                    Icon(Icons.not_interested),
+                                              ),
+                                              Container(
+                                                width: 100,
+                                                color: Colors.blue,
+                                                child: Icon(Icons.forest),
+                                              ),
+                                              Container(
+                                                width: 100,
+                                                color: Colors.green,
+                                              ),
+                                              Container(
+                                                width: 100,
+                                                color: Colors.yellow,
+                                              ),
+                                              Container(
+                                                width: 100,
+                                                color: Colors.orange,
+                                              ),
+                                              Container(
+                                                width: 100,
+                                                color: Colors.purple,
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : (assignmentButtonFlag)
+                                          ? Container(
+                                              height: 70,
+                                              child: SingleChildScrollView(
+                                                scrollDirection: Axis.horizontal,
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    ListView.builder(
+                                                      shrinkWrap: true,
+                                                      // This next line does the trick.
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      itemCount: 3,
+                                                      itemBuilder: (BuildContext context, int index) {
+                                                        return Padding(
+                                                            padding: const EdgeInsets.all(8.0),
+                                                            child: Container(
+                                                              width: 100,
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                                children: [
+                                                                  Text(
+                                                                    "00:03:00",
+                                                                    style: TextStyle(
+                                                                      fontSize: 18,
+                                                                      fontWeight:
+                                                                      FontWeight.bold,
+                                                                    ),
+                                                                  ),
+                                                                  Text("Brush Teeth"),
+                                                                ],
+                                                              ),
+                                                              decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                BorderRadius.circular(
+                                                                    15,),
+                                                                color: Colors.grey.shade300,
+                                                              ),
+                                                            ),
+                                                          );
+                                                      },
+                                                    ),
+                                                    Container(
+                                                      width: 50,
+                                                      height: 50,
+                                                      child: Icon(Icons.add),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.grey.shade300,
+                                                        borderRadius: BorderRadius.circular(15.0),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          : Container(),
                                   // Container(
                                   //   height: 100,
                                   //   child: ListView(
