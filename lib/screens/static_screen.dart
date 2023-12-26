@@ -374,7 +374,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                         ),
                       )
                     : ((whichActionSelected == 4)
-                        ? ((isTimerOn)? CountdownTimer(duration: Duration(hours: 11, minutes: 1, seconds: 5,)):
+                        ? ((isTimerOn)? CountdownTimer(duration: Duration(hours: 1, minutes: 1, seconds: 5,)):
         Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [

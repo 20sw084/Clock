@@ -56,35 +56,57 @@ class _CountdownTimerState extends State<CountdownTimer> {
     final seconds = strDigits(timeLeft.inSeconds.remainder(60));
 
     return Center(
-      child: Stack(
-        alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            width: 250,
-            height: 250,
-            child: CircularProgressIndicator(
-              value: percentageRemaining,
-              strokeWidth: 6,
-              backgroundColor: Colors.blue,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.grey[300]!),
+          Padding(
+            padding: const EdgeInsets.only(top: 50.0, bottom: 50,),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  width: 300,
+                  height: 300,
+                  child: CircularProgressIndicator(
+                    value: percentageRemaining,
+                    strokeWidth: 6,
+                    backgroundColor: Colors.blue,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.grey[300]!),
+                  ),
+                ),
+                Text(
+                  '$hours:$minutes:$seconds',
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                // TODO: show hours, minutes as available when it is not zero.
+                Positioned(
+                  bottom: 90,
+                  child: Text(
+                    'Total ${widget.duration.inHours} hours, ${widget.duration.inMinutes % 60} minutes, and ${widget.duration.inSeconds % 60} seconds',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 15,
+                  child: Icon(Icons.wb_sunny_sharp),
+                ),
+              ],
             ),
           ),
-          Text(
-            '$hours:$minutes:$seconds',
-            style: TextStyle(
-              fontSize: 48,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Positioned(
-            bottom: 30,
-            child: Text(
-              'Total ${widget.duration.inMinutes} minutes',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-              ),
+          Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                FloatingActionButton(onPressed: null, child: Icon(Icons.abc),shape: CircleBorder(),),
+                FloatingActionButton(onPressed: null, child: Icon(Icons.play_arrow),shape: CircleBorder(),),
+              ],
             ),
           ),
         ],
