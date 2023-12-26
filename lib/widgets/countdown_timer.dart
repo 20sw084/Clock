@@ -16,6 +16,7 @@ class CountdownTimer extends StatefulWidget {
 class _CountdownTimerState extends State<CountdownTimer> {
   late Timer _timer;
   Duration _elapsedTime = Duration.zero; // Initialize elapsed time
+  bool isScreenOn = true;
 
   void startTimer() {
     // Start the timer with the total duration
@@ -94,7 +95,10 @@ class _CountdownTimerState extends State<CountdownTimer> {
                 ),
                 Positioned(
                   bottom: 15,
-                  child: Icon(Icons.wb_sunny_sharp),
+                  child: IconButton(icon: Icon(Icons.wb_sunny_sharp), onPressed: () { setState(() {
+                    isScreenOn = !(isScreenOn);
+                  }); },
+                  color: isScreenOn?Colors.blue:Colors.grey,),
                 ),
               ],
             ),
