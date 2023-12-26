@@ -15,16 +15,16 @@ class CountdownTimer extends StatefulWidget {
 
 class _CountdownTimerState extends State<CountdownTimer> {
   late Timer _timer;
-  late Duration _remaining;
+  Duration _elapsedTime = Duration.zero; // Initialize elapsed time
 
   void startTimer() {
-    _remaining = widget.duration;
-
+    // Start the timer with the total duration
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      final secondsPassed = _elapsedTime.inSeconds + 1;
       setState(() {
-        if (_remaining.inSeconds > 0) {
-          _remaining -= Duration(seconds: 1);
-        } else {
+        _elapsedTime = Duration(seconds: secondsPassed);
+
+        if (_elapsedTime >= widget.duration) {
           _timer.cancel();
         }
       });
@@ -45,14 +45,49 @@ class _CountdownTimerState extends State<CountdownTimer> {
 
   @override
   Widget build(BuildContext context) {
+    // Calculate the time left
+    final timeLeft = widget.duration - _elapsedTime;
+    final percentageRemaining = timeLeft.inSeconds / widget.duration.inSeconds;
+
+    // Format the time left into minutes and seconds
     String strDigits(int n) => n.toString().padLeft(2, '0');
-    final minutes = strDigits(_remaining.inMinutes.remainder(60));
-    final seconds = strDigits(_remaining.inSeconds.remainder(60));
+    final hours = strDigits(timeLeft.inHours.remainder(24));
+    final minutes = strDigits(timeLeft.inMinutes.remainder(60));
+    final seconds = strDigits(timeLeft.inSeconds.remainder(60));
 
     return Center(
-      child: Text(
-        '$minutes:$seconds',
-        style: Theme.of(context).textTheme.headline4,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SizedBox(
+            width: 250,
+            height: 250,
+            child: CircularProgressIndicator(
+              value: percentageRemaining,
+              strokeWidth: 6,
+              backgroundColor: Colors.blue,
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.grey[300]!),
+            ),
+          ),
+          Text(
+            '$hours:$minutes:$seconds',
+            style: TextStyle(
+              fontSize: 48,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Positioned(
+            bottom: 30,
+            child: Text(
+              'Total ${widget.duration.inMinutes} minutes',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
