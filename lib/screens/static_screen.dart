@@ -6,6 +6,7 @@ import 'package:alarm_app/widgets/timezone_card.dart';
 import 'package:provider/provider.dart';
 import '../external_libs/flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import '../providers/time_provider.dart';
+import '../widgets/countdown_timer.dart';
 
 class AlarmScreen extends StatefulWidget {
   const AlarmScreen({Key? key}) : super(key: key);
@@ -26,6 +27,8 @@ class _AlarmScreenState extends State<AlarmScreen> {
   List laps = [];
   bool assignmentButtonFlag = false;
   bool wavesButtonFlag = false;
+  Icon currentIcon = Icon(Icons.waves_sharp);
+  bool isTimerOn = false;
 
   void start() {
     isRunning = true;
@@ -371,7 +374,8 @@ class _AlarmScreenState extends State<AlarmScreen> {
                         ),
                       )
                     : ((whichActionSelected == 4)
-                        ? Column(
+                        ? ((isTimerOn)? CountdownTimer(duration: Duration(minutes: 20)):
+        Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               hourMinuteSecond(),
@@ -395,8 +399,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                                         MainAxisAlignment
                                                             .spaceAround,
                                                     children: [
-                                                      Icon(
-                                                          Icons.not_interested),
+                                                      Icon(Icons.not_interested),
                                                       Text("None"),
                                                     ],
                                                   ),
@@ -404,68 +407,103 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                                 Container(
                                                   width: 100,
                                                   // color: Colors.blue,
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    children: [
-                                                      Icon(Icons.forest),
-                                                      Text("Forest"),
-                                                    ],
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        currentIcon = Icon(Icons.forest);
+                                                      });
+                                                    },
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        Icon(Icons.forest),
+                                                        Text("Forest"),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                                 Container(
                                                   width: 100,
                                                   // color: Colors.green,
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    children: [
-                                                      Icon(Icons.nights_stay),
-                                                      Text("Summer night"),
-                                                    ],
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        currentIcon = Icon(Icons.nights_stay);
+                                                      });
+                                                    },
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        Icon(Icons.nights_stay),
+                                                        Text("Summer night"),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                                 Container(
                                                   width: 100,
                                                   // color: Colors.yellow,
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    children: [
-                                                      Icon(Icons.beach_access),
-                                                      Text("Beach"),
-                                                    ],
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        currentIcon = Icon(Icons.beach_access);
+                                                      });
+                                                    },
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        Icon(Icons.beach_access),
+                                                        Text("Beach"),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                                 Container(
                                                   width: 100,
                                                   // color: Colors.orange,
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    children: [
-                                                      Icon(
-                                                          Icons.cloudy_snowing),
-                                                      Text("Summer rain"),
-                                                    ],
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        currentIcon = Icon(Icons.cloudy_snowing);
+                                                      });
+                                                    },
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        Icon(
+                                                            Icons.cloudy_snowing),
+                                                        Text("Summer rain"),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                                 Container(
                                                   width: 100,
                                                   // color: Colors.purple,
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    children: [
-                                                      Icon(Icons
-                                                          .fire_extinguisher),
-                                                      Text("Stove fire"),
-                                                    ],
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        currentIcon = Icon(Icons.fire_extinguisher);
+                                                      });
+                                                    },
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        Icon(Icons
+                                                            .fire_extinguisher),
+                                                        Text("Stove fire"),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -500,38 +538,46 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                                             padding:
                                                                 const EdgeInsets
                                                                     .all(8.0),
-                                                            child: Container(
-                                                              width: 100,
-                                                              child: Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  Text(
-                                                                    "00:03:00",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          18,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
+                                                            child: GestureDetector(
+                                                              onTap: (){
+                                                                // TODO: editing the time
+                                                              },
+                                                              onDoubleTap: (){
+                                                                // TODO: Show edit/delete popup
+                                                              },
+                                                              child: Container(
+                                                                width: 100,
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Text(
+                                                                      "00:03:00",
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            18,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                  Text(
-                                                                      "Brush Teeth"),
-                                                                ],
-                                                              ),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  15,
+                                                                    Text(
+                                                                        "Brush Teeth"),
+                                                                  ],
                                                                 ),
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade300,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                    15,
+                                                                  ),
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade300,
+                                                                ),
                                                               ),
                                                             ),
                                                           );
@@ -608,12 +654,16 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                         backgroundColor: (wavesButtonFlag
                                             ? Colors.blue
                                             : Colors.white),
-                                        child: Icon(Icons.waves_sharp),
+                                        child: currentIcon,
                                       ),
                                       FloatingActionButton(
                                         backgroundColor: Colors.white,
                                         foregroundColor: Colors.blue,
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            isTimerOn = true;
+                                          });
+                                        },
                                         child: Icon(
                                           Icons.play_arrow,
                                           size: 35,
@@ -639,7 +689,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                               ),
                             ],
                           )
-                        : null))),
+                            ): null))),
       ),
     );
   }
