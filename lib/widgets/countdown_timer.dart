@@ -60,7 +60,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 50.0, bottom: 50,),
+            padding: const EdgeInsets.only(top: 50.0,),
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -104,8 +104,8 @@ class _CountdownTimerState extends State<CountdownTimer> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                FloatingActionButton(onPressed: null, child: Icon(Icons.abc),shape: CircleBorder(),),
-                FloatingActionButton(onPressed: null, child: Icon(Icons.play_arrow),shape: CircleBorder(),),
+                FloatingActionButton(onPressed: null, child: Icon(Icons.abc, color: Colors.blue, size: 40,),shape: CircleBorder(),backgroundColor: Colors.white,),
+                FloatingActionButton(onPressed: null, child: Icon(Icons.play_arrow, color: Colors.blue, size: 40,),shape: CircleBorder(),backgroundColor: Colors.white,),
               ],
             ),
           ),
