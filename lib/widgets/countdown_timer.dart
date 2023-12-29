@@ -150,7 +150,12 @@ class _CountdownTimerState extends State<CountdownTimer> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 FloatingActionButton(
-                  onPressed: null,
+                  onPressed: (){
+                    // Functionality tried to implement but having some issues to implement due to architecture
+                    // setState(() {
+                    //   pauseTimer();
+                    // });
+                  },
                   child: Icon(
                     Icons.kebab_dining_sharp,
                     color: Colors.blue,
