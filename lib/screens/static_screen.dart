@@ -8,7 +8,7 @@ import '../external_libs/flutter_time_picker_spinner/flutter_time_picker_spinner
 import '../providers/time_provider.dart';
 import '../widgets/countdown_timer.dart';
 
-bool isTimerOn = false;
+
 
 class AlarmScreen extends StatefulWidget {
   const AlarmScreen({Key? key}) : super(key: key);
@@ -31,6 +31,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
   bool assignmentButtonFlag = false;
   bool wavesButtonFlag = false;
   Icon currentIcon = Icon(Icons.waves_sharp);
+  bool isTimerOn = false;
 
   late Timer _timer;
   Duration _elapsedTime = Duration.zero; // Initialize elapsed time
