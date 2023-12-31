@@ -90,6 +90,10 @@ class CustomDialog extends StatefulWidget {
 }
 
 class _CustomDialogState extends State<CustomDialog> {
+  String _ampm = "am";
+  String _hour = "10";
+  String _minute = "10";
+
   bool stateOfButton = false;
 
   @override
@@ -108,11 +112,11 @@ class _CustomDialogState extends State<CustomDialog> {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: "12:00",
+                        text: "$_hour:$_minute",
                         style: CustomTextStyle.formalStyle1,
                         children: [
                           TextSpan(
-                            text: "am",
+                            text: "$_ampm",
                             style: CustomTextStyle.formalStyle2,
                           ),
                         ],
@@ -144,17 +148,38 @@ class _CustomDialogState extends State<CustomDialog> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  // Scrollable buttons for AM/PM, Hours (01-12), Minutes (00-59)
-                  ScrollButton(items: ['AM', 'PM'], title: 'AM/PM'),
+                  ScrollButton(
+                    items: ['AM', 'PM'],
+                    title: 'AM/PM',
+                    onValueChanged: (newValue) {
+                      handleValueChange('AM/PM', newValue);
+                      setState(() {
+                        _ampm = newValue;
+                      });
+                    },
+                  ),
                   VerticalDivider(),
                   ScrollButton(
-                      items: List.generate(12, (index) => '${index + 1}'),
-                      title: 'Hours'),
+                    items: List.generate(12, (index) => '${index + 1}'),
+                    title: 'Hours',
+                    onValueChanged: (newValue) {
+                      handleValueChange('Hours', newValue);
+                      setState(() {
+                        _hour = newValue;
+                      });
+                    },
+                  ),
                   VerticalDivider(),
                   ScrollButton(
-                      items: List.generate(
-                          60, (index) => '${index.toString().padLeft(2, '0')}'),
-                      title: 'Minutes'),
+                    items: List.generate(60, (index) => '${index.toString().padLeft(2, '0')}'),
+                    title: 'Minutes',
+                    onValueChanged: (newValue) {
+                      handleValueChange('Minutes', newValue);
+                      setState(() {
+                        _minute = newValue;
+                      });
+                    },
+                  ),
                 ],
               ),
             ),
@@ -186,6 +211,11 @@ class _CustomDialogState extends State<CustomDialog> {
         ),
       ),
     );
+  }
+
+  void handleValueChange(String title, String newValue) {
+    // Handle the changed value here
+    print("New value for $title: $newValue");
   }
 }
 

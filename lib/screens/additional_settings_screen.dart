@@ -56,17 +56,23 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Scrollable buttons for AM/PM, Hours (01-12), Minutes (00-59)
-                ScrollButton(items: ['AM', 'PM'], title: 'AM/PM'),
+                ScrollButton(
+                  items: ['AM', 'PM'],
+                  title: 'AM/PM',
+                  onValueChanged: (newValue) => handleValueChange('AM/PM', newValue),
+                ),
                 VerticalDivider(),
                 ScrollButton(
-                    items: List.generate(12, (index) => '${index + 1}'),
-                    title: 'Hours'),
+                  items: List.generate(12, (index) => '${index + 1}'),
+                  title: 'Hours',
+                  onValueChanged: (newValue) => handleValueChange('Hours', newValue),
+                ),
                 VerticalDivider(),
                 ScrollButton(
-                    items: List.generate(
-                        60, (index) => '${index.toString().padLeft(2, '0')}'),
-                    title: 'Minutes'),
+                  items: List.generate(60, (index) => '${index.toString().padLeft(2, '0')}'),
+                  title: 'Minutes',
+                  onValueChanged: (newValue) => handleValueChange('Minutes', newValue),
+                ),
               ],
             ),
           ),
@@ -188,5 +194,10 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
         );
       },
     );
+  }
+
+  void handleValueChange(String title, String newValue) {
+    // Handle the changed value here
+    print("New value for $title: $newValue");
   }
 }
