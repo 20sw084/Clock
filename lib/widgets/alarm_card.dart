@@ -1,8 +1,11 @@
 import 'package:alarm_app/screens/additional_settings_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../scroll_button_screen.dart';
+
+String ampm = "am";
+String hour = "10";
+String minute = "10";
 
 class AlarmCard extends StatefulWidget {
   const AlarmCard({Key? key}) : super(key: key);
@@ -13,9 +16,9 @@ class AlarmCard extends StatefulWidget {
 
 class _AlarmCardState extends State<AlarmCard> {
   bool stateOfLight = false;
-  String selectedAmPm = 'AM';
-  String selectedHour = '01';
-  String selectedMinute = '00';
+  // String selectedAmPm = 'AM';
+  // String selectedHour = '01';
+  // String selectedMinute = '00';
 
   @override
   Widget build(BuildContext context) {
@@ -90,9 +93,7 @@ class CustomDialog extends StatefulWidget {
 }
 
 class _CustomDialogState extends State<CustomDialog> {
-  String _ampm = "am";
-  String _hour = "10";
-  String _minute = "10";
+
 
   bool stateOfButton = false;
 
@@ -112,11 +113,11 @@ class _CustomDialogState extends State<CustomDialog> {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: "$_hour:$_minute",
+                        text: "$hour:$minute",
                         style: CustomTextStyle.formalStyle1,
                         children: [
                           TextSpan(
-                            text: "$_ampm",
+                            text: "$ampm",
                             style: CustomTextStyle.formalStyle2,
                           ),
                         ],
@@ -152,9 +153,8 @@ class _CustomDialogState extends State<CustomDialog> {
                     items: ['AM', 'PM'],
                     title: 'AM/PM',
                     onValueChanged: (newValue) {
-                      handleValueChange('AM/PM', newValue);
                       setState(() {
-                        _ampm = newValue;
+                        ampm = newValue;
                       });
                     },
                   ),
@@ -163,9 +163,8 @@ class _CustomDialogState extends State<CustomDialog> {
                     items: List.generate(12, (index) => '${index + 1}'),
                     title: 'Hours',
                     onValueChanged: (newValue) {
-                      handleValueChange('Hours', newValue);
                       setState(() {
-                        _hour = newValue;
+                        hour = newValue;
                       });
                     },
                   ),
@@ -174,9 +173,8 @@ class _CustomDialogState extends State<CustomDialog> {
                     items: List.generate(60, (index) => '${index.toString().padLeft(2, '0')}'),
                     title: 'Minutes',
                     onValueChanged: (newValue) {
-                      handleValueChange('Minutes', newValue);
                       setState(() {
-                        _minute = newValue;
+                        minute = newValue;
                       });
                     },
                   ),
@@ -192,7 +190,7 @@ class _CustomDialogState extends State<CustomDialog> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const AdditionalSettingsScreen(),
+                        builder: (context) => AdditionalSettingsScreen(onampmValueChanged: (String n) { ampm = n; }, onhourValueChanged: (String n) { hour = n; }, onminuteValueChanged: (String n) { minute = n; },),
                       ),
                     );
                   },
@@ -211,11 +209,6 @@ class _CustomDialogState extends State<CustomDialog> {
         ),
       ),
     );
-  }
-
-  void handleValueChange(String title, String newValue) {
-    // Handle the changed value here
-    print("New value for $title: $newValue");
   }
 }
 

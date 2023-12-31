@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import '../scroll_button_screen.dart';
 
 class AdditionalSettingsScreen extends StatefulWidget {
-  const AdditionalSettingsScreen({super.key});
+  final Function(String) onampmValueChanged;
+  final Function(String) onhourValueChanged;
+  final Function(String) onminuteValueChanged;
+
+  AdditionalSettingsScreen({super.key, required this.onampmValueChanged, required this.onhourValueChanged, required this.onminuteValueChanged,});
 
   @override
   State<AdditionalSettingsScreen> createState() => _AdditionalSettingsScreenState();
@@ -59,19 +63,19 @@ class _AdditionalSettingsScreenState extends State<AdditionalSettingsScreen> {
                 ScrollButton(
                   items: ['AM', 'PM'],
                   title: 'AM/PM',
-                  onValueChanged: (newValue) => handleValueChange('AM/PM', newValue),
+                  onValueChanged: (newValue) => widget.onampmValueChanged(newValue),
                 ),
                 VerticalDivider(),
                 ScrollButton(
                   items: List.generate(12, (index) => '${index + 1}'),
                   title: 'Hours',
-                  onValueChanged: (newValue) => handleValueChange('Hours', newValue),
+                  onValueChanged: (newValue) => widget.onhourValueChanged(newValue),
                 ),
                 VerticalDivider(),
                 ScrollButton(
                   items: List.generate(60, (index) => '${index.toString().padLeft(2, '0')}'),
                   title: 'Minutes',
-                  onValueChanged: (newValue) => handleValueChange('Minutes', newValue),
+                  onValueChanged: (newValue) => widget.onminuteValueChanged(newValue),
                 ),
               ],
             ),
