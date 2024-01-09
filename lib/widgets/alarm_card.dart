@@ -20,6 +20,19 @@ class _AlarmCardState extends State<AlarmCard> {
   // String selectedHour = '01';
   // String selectedMinute = '00';
 
+  void updateState() {
+    setState(() {
+      // This function can be expanded to change the state as needed
+    });
+  }
+
+  void updateStateOfLight() {
+    setState(() {
+      // This function can be expanded to change the state as needed
+      stateOfLight = !stateOfLight;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,11 +52,11 @@ class _AlarmCardState extends State<AlarmCard> {
                 children: [
                   RichText(
                     text: TextSpan(
-                      text: "12:00",
+                      text: "$hour:$minute",
                       style: CustomTextStyle.formalStyle1,
                       children: [
                         TextSpan(
-                          text: "am",
+                          text: "$ampm",
                           style: CustomTextStyle.formalStyle2,
                         ),
                       ],
@@ -75,7 +88,7 @@ class _AlarmCardState extends State<AlarmCard> {
           showDialog(
             context: context,
             builder: (BuildContext context) {
-              return CustomDialog();
+              return CustomDialog(updateParentState: updateState, updateParentStateOfLight: updateStateOfLight,);
             },
           );
         },
@@ -88,6 +101,11 @@ class _AlarmCardState extends State<AlarmCard> {
 }
 
 class CustomDialog extends StatefulWidget {
+  final VoidCallback updateParentState;
+  final VoidCallback updateParentStateOfLight;
+
+  const CustomDialog({Key? key, required this.updateParentState, required this.updateParentStateOfLight}) : super(key: key);
+
   @override
   State<CustomDialog> createState() => _CustomDialogState();
 }
@@ -137,8 +155,9 @@ class _CustomDialogState extends State<CustomDialog> {
                       setState(
                         () {
                           stateOfButton = value;
-                        },
+                        },// This will call the function in the AlarmCard
                       );
+                      widget.updateParentStateOfLight();
                     },
                   ),
                 ),
@@ -156,6 +175,7 @@ class _CustomDialogState extends State<CustomDialog> {
                       setState(() {
                         ampm = newValue;
                       });
+                      widget.updateParentState();
                     },
                   ),
                   VerticalDivider(),
@@ -166,6 +186,7 @@ class _CustomDialogState extends State<CustomDialog> {
                       setState(() {
                         hour = newValue;
                       });
+                      widget.updateParentState();
                     },
                   ),
                   VerticalDivider(),
@@ -176,6 +197,7 @@ class _CustomDialogState extends State<CustomDialog> {
                       setState(() {
                         minute = newValue;
                       });
+                      widget.updateParentState(); // This will call the function in the AlarmCard
                     },
                   ),
                 ],
