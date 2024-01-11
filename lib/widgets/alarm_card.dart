@@ -1,5 +1,4 @@
 import 'package:alarm_app/screens/additional_settings_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../scroll_button_screen.dart';
 
